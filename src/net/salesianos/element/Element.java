@@ -52,7 +52,7 @@ public class Element {
         textToConsole += "- Nombre:" + name;
         textToConsole += "\n- Ranking: " + ranking;
         textToConsole += "\n- Precio: " + price;
-        textToConsole += "\n- "
-    }
-    
+        textToConsole += "\n- Numero de cigarrillos: " + numberCigarretes;
+        return textToConsole;
+    }    
 }
