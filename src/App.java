@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -27,7 +28,7 @@ public class App {
 
         int ask;
         do {
-            int seleccion = JOptionPane.showOptionDialog(
+            int selection = JOptionPane.showOptionDialog(
                 null,
                 "Elige una opción:",
                 "Menú Principal",
@@ -38,7 +39,7 @@ public class App {
                 opciones[0]
             );
 
-            if (seleccion == 0) {
+            if (selection == 0) {
                 JTextField nameTobacco = new JTextField();
                 JTextField rankingTobacco = new JTextField();
                 JTextField priceTobacco = new JTextField();
@@ -68,7 +69,7 @@ public class App {
                 }
             }
 
-            if (seleccion == 1) {
+            else if (selection == 1) {
                 if (nombres.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "No hay elementos para editar.");
                 } else {
@@ -128,6 +129,73 @@ public class App {
 
                                 JOptionPane.showMessageDialog(null, "Tabaco actualizado:\n" + tabacoEditar);
                             } catch (NumberFormatException e) {
+                                JOptionPane.showMessageDialog(null, "Por favor, introduce valores numéricos válidos.");
+                            }
+                        }
+                    }
+                }
+            }else if(selection == 2){
+                if (nombres.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No hay elementos para mostrar.");
+                    return;
+                }
+
+                StringBuilder sb = new StringBuilder();
+                for (Tobacco e : nombres) {
+
+                    sb.append("Nombre: ").append(e.getName()).append("\n");
+                    sb.append("Ranking: ").append(e.getRanking()).append("\n");
+                    sb.append("Precio: ").append(e.getPrice()).append("\n");
+                    sb.append("Número de cigarrillos: ").append(e.getNumberCigarretes()).append("\n");
+                    sb.append("----------------------------\n");
+                }
+
+                JOptionPane.showMessageDialog(null, sb.toString(), "Ranking de Elementos", JOptionPane.INFORMATION_MESSAGE);
+
+            }else if(selection == 3){
+                if (nombres.isEmpty()) {
+                    JOptionPane.showMessageDialog(null, "No hay elementos para borrar.");
+                } else {
+                    String[] nombresArray = new String[nombres.size()];
+                    int i = 0;
+                    for (Tobacco t : nombres) {
+                        nombresArray[i] = t.getName();
+                        i++;
+                    }
+
+                    String seleccionado = (String) JOptionPane.showInputDialog(
+                        null,
+                        "Selecciona el tabaco a borrar:",
+                        "Borrar Tobacco",
+                        JOptionPane.PLAIN_MESSAGE,
+                        null,
+                        nombresArray,
+                        nombresArray[0]
+                    );
+
+                    Tobacco tabacoBorrar = null;
+                    if (seleccionado != null) {
+                        for (Tobacco t : nombres) {
+                            if (t.getName().equals(seleccionado)) {
+                                tabacoBorrar = t;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (tabacoBorrar != null) {
+                        int result = JOptionPane.showConfirmDialog(null, tabacoBorrar, "Borrar Tobacco", JOptionPane.OK_CANCEL_OPTION);
+
+                        if (result == JOptionPane.OK_OPTION) {
+                            try {
+                                for (Tobacco t : nombres) {
+                                    if (tabacoBorrar != null && t.equals(tabacoBorrar)) {
+                                        nombres.remove(nombres.indexOf(tabacoBorrar));
+                                        JOptionPane.showMessageDialog(null, "Tabaco borrado.");
+                                        break;
+                                    }
+                                }
+                            } catch (ConcurrentModificationException e) {
                                 JOptionPane.showMessageDialog(null, "Por favor, introduce valores numéricos válidos.");
                             }
                         }
