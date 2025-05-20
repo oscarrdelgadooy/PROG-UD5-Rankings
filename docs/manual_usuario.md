@@ -48,4 +48,4 @@ El programa controla:
 
 ---
 
-© 2025 – Tobacco Manager
+© 2025 – Tobacco Managere
