@@ -1,6 +1,8 @@
 package net.salesianos.element;
 
-public class Tobacco {
+import net.salesianos.utils.Validation;
+
+public class Tobacco implements Validation{
     private String name;
     private int ranking;
     private float price;
@@ -43,6 +45,40 @@ public class Tobacco {
 
     public void setNumberCigarretes(int numberCigarretes) {
         this.numberCigarretes = numberCigarretes;
+    }
+    @Override
+    public boolean validateName(String nombre) {
+        return nombre != null && !nombre.trim().isEmpty();
+    }
+
+    @Override
+    public boolean validateRanking(String rankingTexto) {
+        try {
+            int r = Integer.parseInt(rankingTexto.trim());
+            return r >= 0 && r <= 10; // ejemplo de rango
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean validatePrice(String precioTexto) {
+        try {
+            float p = Float.parseFloat(precioTexto.trim());
+            return p > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean validateSize(String tamanioTexto) {
+        try {
+            int t = Integer.parseInt(tamanioTexto.trim());
+            return t > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     @Override
