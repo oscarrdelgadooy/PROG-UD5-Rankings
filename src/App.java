@@ -26,9 +26,9 @@ public class App {
         nombres.add(new Tobacco("Kruger", 0, 3f, 20));
         nombres.add(new Tobacco("Chesterfield 24s", 3, 3.8f, 24));
 
-        int ask;
+        int selection;
         do {
-            int selection = JOptionPane.showOptionDialog(
+            selection = JOptionPane.showOptionDialog(
                 null,
                 "Elige una opción:",
                 "Menú Principal",
@@ -203,7 +203,6 @@ public class App {
                 }
             }
 
-            ask = JOptionPane.showConfirmDialog(null, "¿Quieres continuar?");
-        } while (JOptionPane.OK_OPTION == ask);
+        } while (selection != 4);
     }
 }
