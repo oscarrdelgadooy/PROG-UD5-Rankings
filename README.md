@@ -1,19 +1,15 @@
-## Getting Started
+# Tobacco Manager
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Aplicación de escritorio en Java que permite gestionar una lista de marcas de tabaco. El usuario puede añadir, modificar, eliminar y visualizar datos como nombre, ranking, precio y cantidad de cigarrillos.
 
-## Folder Structure
+## 🎯 Objetivos del Proyecto
 
-The workspace contains two folders by default, where:
+- Aprender a trabajar con estructuras de datos como listas (`ArrayList`).
+- Aplicar interfaces y validaciones en Java.
+- Diseñar una interfaz de usuario básica con `JOptionPane`.
+- Gestionar errores y excepciones comunes en aplicaciones Java.
+- Separar lógica de validación y presentación siguiendo buenas prácticas.
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+## 📄 Manual de Usuario
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
-# UD-5-Practica
+Puedes consultar el manual completo en la carpeta [`docs/manual_usuario.md`](docs/manual_usuario.md).
