@@ -8,6 +8,9 @@ public class Tobacco implements Validation{
     private float price;
     private int numberCigarretes;
 
+    public Tobacco() {
+    }
+
     public Tobacco(String name, int ranking, float price, int sizes) {
         this.name = name;
         this.ranking = ranking;

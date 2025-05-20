@@ -27,6 +27,7 @@ public class App {
         nombres.add(new Tobacco("Chesterfield 24s", 3, 3.8f, 24));
 
         int selection = 0;
+        Tobacco validador = new Tobacco();
         do {
             try {
 
@@ -48,7 +49,7 @@ public class App {
 
                     Object[] campos = {
                             "Name: ", nameTobacco,
-                            "Ranking (number): ", rankingTobacco,
+                            "Ranking (0-5): ", rankingTobacco,
                             "Price: ", priceTobacco,
                             "Size: ", sizeTobacco
                     };
@@ -57,17 +58,38 @@ public class App {
                             JOptionPane.OK_CANCEL_OPTION);
 
                     if (result == JOptionPane.OK_OPTION) {
-                        try {
-                            String nombre = nameTobacco.getText();
-                            int ranking = Integer.parseInt(rankingTobacco.getText().trim());
-                            float price = Float.parseFloat(priceTobacco.getText().trim());
-                            int size = Integer.parseInt(sizeTobacco.getText().trim());
 
-                            nombres.add(new Tobacco(nombre, ranking, price, size));
-                            JOptionPane.showMessageDialog(null, "Tobacco added.");
-                        } catch (NumberFormatException e) {
-                            JOptionPane.showMessageDialog(null, "Please, introduce valid numbers.");
+                        String nombre = nameTobacco.getText().trim();
+                        String rankingTexto = rankingTobacco.getText().trim();
+                        String priceTexto = priceTobacco.getText().trim();
+                        String sizeTexto = sizeTobacco.getText().trim();
+
+                        if (!validador.validateName(nombre)) {
+                            JOptionPane.showMessageDialog(null, "Invalid name.");
+                            continue;
                         }
+
+                        if (!validador.validateRanking(rankingTexto)) {
+                            JOptionPane.showMessageDialog(null, "Invalid ranking.");
+                            continue;
+                        }
+
+                        if (!validador.validatePrice(priceTexto)) {
+                            JOptionPane.showMessageDialog(null, "Invalid price.");
+                            continue;
+                        }
+
+                        if (!validador.validateSize(sizeTexto)) {
+                            JOptionPane.showMessageDialog(null, "Invalid size.");
+                            continue;
+                        }
+
+                        int ranking = Integer.parseInt(rankingTexto);
+                        float price = Float.parseFloat(priceTexto);
+                        int size = Integer.parseInt(sizeTexto);
+
+                        nombres.add(new Tobacco(nombre, ranking, price, size));
+                        JOptionPane.showMessageDialog(null, "Tobacco added.");
                     }
                 }
 
@@ -102,7 +124,7 @@ public class App {
                         }
 
                         if (tabacoEditar != null) {
-                            JTextField nameTobacco = new JTextField(tabacoEditar.getName());
+                            JTextField nameTobacco = new JTextField(tabacoEditar.getName().trim());
                             JTextField rankingTobacco = new JTextField(String.valueOf(tabacoEditar.getRanking()));
                             JTextField priceTobacco = new JTextField(String.valueOf(tabacoEditar.getPrice()));
                             JTextField sizeTobacco = new JTextField(String.valueOf(tabacoEditar.getNumberCigarretes()));
@@ -119,6 +141,26 @@ public class App {
 
                             if (result == JOptionPane.OK_OPTION) {
                                 try {
+                                    if (!validador.validateName(nameTobacco.getText())) {
+                                        JOptionPane.showMessageDialog(null, "Invalid name.");
+                                        continue;
+                                    }
+
+                                    if (!validador.validateRanking(rankingTobacco.getText())) {
+                                        JOptionPane.showMessageDialog(null, "Invalid ranking.");
+                                        continue;
+                                    }
+
+                                    if (!validador.validatePrice(priceTobacco.getText())) {
+                                        JOptionPane.showMessageDialog(null, "Invalid price.");
+                                        continue;
+                                    }
+
+                                    if (!validador.validateSize(sizeTobacco.getText())) {
+                                        JOptionPane.showMessageDialog(null, "Invalid size.");
+                                        continue;
+                                    }
+
                                     String nombreNuevo = nameTobacco.getText();
                                     int rankingNuevo = Integer.parseInt(rankingTobacco.getText().trim());
                                     float priceNuevo = Float.parseFloat(priceTobacco.getText().trim());
