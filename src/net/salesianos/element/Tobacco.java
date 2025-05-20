@@ -55,7 +55,7 @@ public class Tobacco implements Validation{
     public boolean validateRanking(String rankingTexto) {
         try {
             int r = Integer.parseInt(rankingTexto.trim());
-            return r >= 0 && r <= 10; // ejemplo de rango
+            return r >= 0 && r <= 5;
         } catch (NumberFormatException e) {
             return false;
         }
